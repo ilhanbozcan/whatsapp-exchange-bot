@@ -44,7 +44,7 @@ def sms_reply():
         resp.message(names)
         return str(resp)
 
-    elif str(msg) in exchange.values():
+    elif str(msg) in exchange.keys():
 
         string_result = ''
         response = requests.get('https://api.exchangeratesapi.io/latest?base={}'.format(msg))
