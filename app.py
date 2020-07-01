@@ -38,12 +38,12 @@ def sms_reply():
             count+=1
 
         resp.message(names)
-        return(resp)
+        return str(resp)
 
     elif str(msg) in names_list:
         response = requests.get('https://api.exchangeratesapi.io/latest?base={}'.format(msg))
         resp.message(response.json)
-        return(resp)
+        return str(resp)
 
 
 
@@ -54,7 +54,7 @@ def sms_reply():
 
     else:
         resp.message('You said: {}'.format(msg))
-        return(resp)
+        return str(resp)
 
 
 
