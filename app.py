@@ -3,7 +3,7 @@ from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 
 
-url = 'https://prime.exchangerate-api.com/v5/642fb88fc669b5fa92814bd0/latest/TL'
+url = 'https://api.yapikredi.com.tr/api/investmentrates/v1/currencyRates'
 response = requests.get(url)
 data = response.json()
 
