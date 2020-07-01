@@ -15,12 +15,15 @@ def hello():
     return 'Welcome'
 
 
-names_list =[]
+
 
 @app.route('/sms', methods = ['POST'])
 def sms_reply():
     response = requests.get('https://api.exchangeratesapi.io/latest?base=USD')
     names = ""
+    names_list =[]
+    for i in response.json()['rates'].keys():
+            names_list.append(i)
 
     msg = request.form.get('Body')
     resp = MessagingResponse()
@@ -41,14 +44,10 @@ def sms_reply():
         return str(resp)
 
     elif str(msg) in names_list:
+        print(names_list)
         response = requests.get('https://api.exchangeratesapi.io/latest?base={}'.format(msg))
         resp.message(response.json)
         return str(resp)
-
-
-
-
-
 
 
 
