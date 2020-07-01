@@ -1,19 +1,39 @@
+
 import requests
-from fixerio import Fixerio
+import webbrowser
+import re
+import sys
+from bs4 import BeautifulSoup
+
+url = 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html'
+
+page = requests.get(url)
 
 
-response = requests.get('https://api.exchangeratesapi.io/latest?base=USD')
-names = ""
+soup = BeautifulSoup(page.content, 'html.parser')
 
-result = response.json()
-print(result)
+exchange = {}
 
-string = ''
+for row in soup.select('tbody tr'):
+    row_text = [x.text for x in row.find_all('td')]
+    exchange[row_text[0]] = row_text[1]
 
-for key,value in result['rates'].items():
-    string = string + (key+ ' --> ' + str(value)) +'\n'
+print(exchange)
 
-print(string)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
