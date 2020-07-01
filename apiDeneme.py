@@ -19,6 +19,8 @@ for row in soup.select('tbody tr'):
     exchange[row_text[0]] = row_text[1]
 
 print(exchange)
+print(exchange.get('EUR'))
+print(len(exchange.items()))
 
 
 
