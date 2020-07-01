@@ -45,8 +45,13 @@ def sms_reply():
 
     elif str(msg) in names_list:
         print(names_list)
+        string_result = ''
         response = requests.get('https://api.exchangeratesapi.io/latest?base={}'.format(msg))
-        resp.message(response.json)
+        result = response.json()
+        for key,value in result['rates'].items():
+            string_result = string_result + (key+ ' --> ' + str(value)) +'\n'
+
+        resp.message(string_result)
         return str(resp)
 
 

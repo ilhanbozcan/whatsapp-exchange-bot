@@ -5,18 +5,20 @@ from fixerio import Fixerio
 response = requests.get('https://api.exchangeratesapi.io/latest?base=USD')
 names = ""
 
-count = 0
-for i in response.json()['rates'].keys():
+result = response.json()
+print(result)
 
-    names = names+'   ' + i
+string = ''
 
-    if count == 5:
-        names = names + '\n'
-        count = 0
-    count+=1
+for key,value in result['rates'].items():
+    string = string + (key+ ' --> ' + str(value)) +'\n'
 
-print(names)
-#print(response.status_code)
+print(string)
+
+
+
+
+
 
 
 
